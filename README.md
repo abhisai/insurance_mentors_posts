@@ -40,11 +40,14 @@ where almost everyone loses a day.
       Token and Secret**. A token minted while the App was read-only can never write. — step 3
 - [ ] **Values in place** — locally fill in `.env`; in GitHub add the same five as
       repository secrets. *Publishes the post.* — steps 3, 5
+- [ ] **Workflow permissions** — **Settings → Actions → General → Workflow permissions
+      → Read and write**. Without it the state commit fails and the topic rotation
+      silently breaks. — step 5
 - [ ] **Verify** — `npm run preflight` ends with **0 failures** and prints the correct
       @handle. Nothing is posted. — step 6, Stage 1
-- [ ] **Publish once** — `npm run post`, then `npm run reset` to clear the test
+- [ ] **Publish once** — `npm run post`, then decide whether to keep or reset the
       history. — step 6, Stages 2–3
-- [ ] **Go live** — push to GitHub and let the daily cron take over. — steps 4–5
+- [ ] **Go live** — push to GitHub and let the cron take over. — steps 4–5
 
 ---
 
@@ -266,6 +269,18 @@ Add these five:
 - `X_API_SECRET`
 - `X_ACCESS_TOKEN`
 - `X_ACCESS_TOKEN_SECRET`
+
+### Then: let the workflow write back
+
+The workflow commits `data/state.json` after each post, which needs write access.
+New repositories default to **read-only**, so set it once:
+
+**Settings → Actions → General → Workflow permissions → `Read and write permissions` → Save.**
+
+The YAML already requests `permissions: contents: write`, but the repository setting is
+the ceiling above it. Skip this and the post still publishes, while the state commit
+fails with *"Write access to repository not granted"* — which silently breaks the topic
+rotation, because the next run has no record of what was posted.
 
 ---
 
@@ -545,7 +560,7 @@ Useful flags: `--dry-run` / `-n`, `--preview`, `--force` / `-f`, `--topic <id>`.
 | `429` `credit_balance_exhausted` | The organization has no **spendable** prepaid credits. Buy credits (minimum $5) on the billing page and allow a few minutes. A ChatGPT Plus/Pro subscription does **not** fund the API, purchased credits expire after a year, and usage processed after a balance hits zero can leave a negative balance that eats the next purchase. |
 | `OpenAI API 429` (rate limit) | Too many requests in a short window. A daily job never hits this — retry. |
 | `Model ... refused to write` | The safety filter rejected the draft. Re-run; the topic rotates. |
-| Forbidden push in Actions | The workflow needs `permissions: contents: write`, which is already set in the YAML. |
+| Forbidden push in Actions, or *Write access to repository not granted* | The repository's default `GITHUB_TOKEN` permission is read-only. Set **Settings → Actions → General → Workflow permissions → Read and write permissions**. The workflow already requests `contents: write`; the repository setting is the ceiling above it. |
 | `preflight` warns *"No post would go out right now"* | Expected, not an error — it reports the guard accurately, e.g. the daily limit is reached or the last post was inside the 120-minute quiet period. Use `--force` to post anyway. |
 | Workflow never runs on schedule | Scheduled workflows are disabled after 60 days of repo inactivity. Run it once manually to re-enable. |
 
