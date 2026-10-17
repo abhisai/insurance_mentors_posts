@@ -1,0 +1,75 @@
+name: Insurance posts to X
+
+on:
+  # Two slots, both UTC because GitHub cron has no other option:
+  #   02:30 UTC = 08:00 IST
+  #   11:30 UTC = 17:00 IST
+  # GitHub may start a scheduled run a few minutes late, which is harmless: the
+  # daily limit and the minimum gap are enforced in code, not by the clock.
+  schedule:
+    - cron: '30 2,11 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Preview only - generate the post but do not publish
+        type: boolean
+        default: true
+      topic:
+        description: Optional topic id from data/topics.json (leave blank for auto)
+        type: string
+        default: ''
+
+# Needed so the workflow can commit the updated data/state.json back to the repo.
+permissions:
+  contents: write
+
+# Never let two runs publish at the same time.
+concurrency:
+  group: daily-x-post
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate and publish
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          # Set an OPENAI_MODEL repository *variable* to override the default (gpt-5.4).
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || 'false' }}
+          LINK_CHANCE: '0'
+          POSTS_PER_DAY: '2'
+          MIN_GAP_MINUTES: '120'
+          MAX_CHARS: '280'
+          BRAND_NAME: InsuranceMentors.in
+          BRAND_SITE: https://www.insurancementors.in
+          BRAND_WHATSAPP: https://wa.me/918096769690
+        run: node src/index.mjs ${{ inputs.topic && format('--topic {0}', inputs.topic) || '' }}
+
+      - name: Commit the posting history
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
+        run: |
+          if git diff --quiet -- data/state.json; then
+            echo "No state change to commit."
+            exit 0
+          fi
+          git config user.name "insurancementors-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/state.json
+          git commit -m "chore: log post for $(date -u +'%Y-%m-%d')"
+          git push

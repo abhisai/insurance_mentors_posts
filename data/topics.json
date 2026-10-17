@@ -1,0 +1,560 @@
+[
+  {
+    "id": "health-waiting-period",
+    "category": "health",
+    "topic": "The initial waiting period in a health insurance policy",
+    "brief": "Most health plans do not pay for any illness in roughly the first 30 days. Specific listed illnesses (hernia, cataract, joint replacement, piles) often have a 1-2 year wait, and pre-existing diseases 2-4 years. Exact numbers vary by policy, so tell readers to check the wording. Angle: people buy a policy and assume cover starts tomorrow."
+  },
+  {
+    "id": "health-ped-disclosure",
+    "category": "health",
+    "topic": "Why not disclosing a pre-existing disease is the biggest claim killer",
+    "brief": "Pre-existing disease usually means anything diagnosed or treated in the 36-48 months before buying, though the exact window is policy-specific. Non-disclosure is one of the most common reasons claims get rejected. Angle: the insurer's job is to underwrite you; your only job is to tell the truth on the form."
+  },
+  {
+    "id": "health-room-rent-limit",
+    "category": "health",
+    "topic": "How a room-rent limit quietly shrinks your claim",
+    "brief": "If the policy caps the room at a single private AC room and you take a deluxe room, most insurers apply proportionate deduction: they pay the same proportion of the whole bill, not just the room charge. Angle: the room category you pick at admission can cut your payout everywhere else."
+  },
+  {
+    "id": "health-copay",
+    "category": "health",
+    "topic": "What a co-pay clause actually costs you",
+    "brief": "A co-pay is the share of every claim you pay yourself, commonly 10-20% in senior-citizen plans. On a Rs 5 lakh bill, a 20% co-pay means Rs 1 lakh comes from your pocket even though you are insured. Angle: a cheaper premium often buys a co-pay you will feel at claim time."
+  },
+  {
+    "id": "health-deductible",
+    "category": "health",
+    "topic": "Deductible: the self-paid layer before your insurer steps in",
+    "brief": "A deductible is the amount you agree to bear before the insurer pays anything. Taking a voluntary deductible lowers your premium, and it is the mechanism behind cheap top-up plans. Angle: there is a real trade-off, and it only makes sense if you genuinely have the cash set aside."
+  },
+  {
+    "id": "health-network-hospitals",
+    "category": "health",
+    "topic": "Cashless only works at network hospitals",
+    "brief": "Cashless admission is available only at hospitals on the insurer's or TPA's network. The same treatment at a non-network hospital becomes a reimbursement claim. Angle: before you buy, check that the good hospitals near you are on the list, and recheck it every year."
+  },
+  {
+    "id": "health-cashless-vs-reimbursement",
+    "category": "health",
+    "topic": "Cashless versus reimbursement, explained simply",
+    "brief": "In cashless, the insurer settles directly with the hospital and you pay only the non-payable part. In reimbursement, you pay the hospital first and file for a refund. Cashless needs pre-authorisation and network hospitals; reimbursement needs every original bill. Angle: know which one you have before an emergency, not during it."
+  },
+  {
+    "id": "health-floater-vs-individual",
+    "category": "health",
+    "topic": "Family floater or individual cover?",
+    "brief": "A family floater gives everyone one shared sum insured, which is cheaper but a single big claim can exhaust it for the whole family. Individual policies give each person their own sum insured but cost more. Angle: shared cover is fine until the year one family member actually needs it."
+  },
+  {
+    "id": "health-maternity-cover",
+    "category": "health",
+    "topic": "Maternity cover comes with a waiting period",
+    "brief": "Maternity benefit usually kicks in after 2-4 years, with separate sub-limits for normal delivery and C-section, and newborn cover details worth checking. Angle: buying a policy after planning a pregnancy is usually too late for maternity benefits."
+  },
+  {
+    "id": "health-daycare",
+    "category": "health",
+    "topic": "Day-care procedures: covered without a 24-hour stay",
+    "brief": "Many treatments (dialysis, chemotherapy, cataract, some endoscopies) do not need a 24-hour hospitalisation, and most modern plans list them as day-care procedures. Older or basic plans may not. Angle: check your policy lists day-care treatment, because that is where a lot of real bills are."
+  },
+  {
+    "id": "health-no-claim-bonus",
+    "category": "health",
+    "topic": "No-claim bonus: your cover quietly grows",
+    "brief": "Go a claim-free year and many plans add a percentage to your sum insured, subject to a cap. Some reduce the bonus after a claim. Angle: readers often do not realise their cover is bigger than what they bought, or that using it resets that growth."
+  },
+  {
+    "id": "health-portability",
+    "category": "health",
+    "topic": "Portability lets you switch insurers without starting over",
+    "brief": "Applying within the renewal window (commonly 30-60 days before renewal, per IRDAI norms) lets you carry accrued waiting-period credit to the new insurer, subject to their acceptance. Let the policy lapse and you may restart from zero. Angle: unhappy with your insurer? Switch properly, do not just stop paying."
+  },
+  {
+    "id": "health-restoration",
+    "category": "health",
+    "topic": "Restoration benefit: your sum insured refills",
+    "brief": "If the sum insured is exhausted during the year, a restoration or refill benefit tops it up again, often once, and usually for a different member or a different illness. Some plans offer unlimited refills. Angle: this benefit matters most in a family floater where one claim eats the whole pot."
+  },
+  {
+    "id": "health-super-topup",
+    "category": "health",
+    "topic": "The cheapest way to raise your health cover",
+    "brief": "A super top-up sits above a deductible and considers the total of all claims in the year, unlike a plain top-up that looks at each claim separately. Because you self-fund the first layer, the premium is far lower. Angle: for many families, a modest base policy plus a super top-up is smarter than one huge expensive policy."
+  },
+  {
+    "id": "health-moratorium",
+    "category": "health",
+    "topic": "The moratorium period and what it means for you",
+    "brief": "As per IRDAI norms, after a policy has been continuously in force for a specified long period (commonly 60 months), the insurer generally cannot contest the claim except for proven fraud or misrepresentation. Angle: it is one more reason not to let a policy lapse and restart the clock."
+  },
+  {
+    "id": "health-consumables",
+    "category": "health",
+    "topic": "Gloves, syringes, PPE: the small bills that add up",
+    "brief": "Consumables like gloves, syringes, cotton and implants have historically been non-payable, and they can quietly add a noticeable amount to a hospital bill. Many newer plans now cover them. Angle: ask specifically whether the plan covers consumables before you compare premiums."
+  },
+  {
+    "id": "health-domiciliary",
+    "category": "health",
+    "topic": "Domiciliary hospitalisation: treatment at home",
+    "brief": "When a patient cannot be moved to a hospital or no bed is available, some plans cover treatment given at home, usually with sub-limits. Angle: a genuinely useful benefit that most buyers never ask about."
+  },
+  {
+    "id": "health-ambulance",
+    "category": "health",
+    "topic": "Ambulance charges are part of your cover",
+    "brief": "Road ambulance charges are covered in most plans, often within a limit, and air ambulance is usually capped much lower or excluded. Angle: in an emergency nobody compares plans; make sure this is already in yours."
+  },
+  {
+    "id": "health-ayush",
+    "category": "health",
+    "topic": "AYUSH treatment cover and its sub-limit",
+    "brief": "Ayurveda, Yoga, Unani, Siddha and Homeopathy treatment is covered by most plans, but usually as a sub-limit of the sum insured rather than the full amount, and generally only at government or recognised hospitals. Angle: if your family uses AYUSH, check that sub-limit."
+  },
+  {
+    "id": "health-opd",
+    "category": "health",
+    "topic": "Why your health policy will not pay for a doctor visit",
+    "brief": "Regular outpatient consultation, medicines and diagnostic tests are usually not covered; a few plans bundle a health check-up or consultation benefit. Angle: readers assume 'health insurance' means everything medical. Setting that expectation saves a nasty surprise."
+  },
+  {
+    "id": "health-exclusions",
+    "category": "health",
+    "topic": "The exclusions page is the most important page",
+    "brief": "Common exclusions include cosmetic surgery, self-inflicted injury, treatment from unqualified practitioners, and certain conditions in the first year or two. Angle: people read the brochure, never the exclusions. That single page decides most claim disputes."
+  },
+  {
+    "id": "health-free-look",
+    "category": "health",
+    "topic": "The free-look period is your returns window",
+    "brief": "You can return a newly issued policy within the free-look window, commonly 30 days, if the terms do not match what you were told. Premium is refunded minus proportionate risk and expenses. Angle: it is the one clean exit after buying, and most people never use it."
+  },
+  {
+    "id": "health-senior-citizens",
+    "category": "health",
+    "topic": "Buying health cover for parents: what actually matters",
+    "brief": "For parents, look at entry-age limits, co-pay, whether pre-existing conditions are covered after a waiting period, and whether a pre-policy medical check-up is required. Angle: the best time to insure parents is before a diagnosis, not after."
+  },
+  {
+    "id": "health-checkup-benefit",
+    "category": "health",
+    "topic": "Your policy may include a free annual health check-up",
+    "brief": "Many plans offer a preventive health check-up benefit after a claim-free year, and using it does not always cost you the no-claim bonus. Angle: a benefit people pay for and never claim. Use it and catch things early."
+  },
+  {
+    "id": "health-claim-intimation",
+    "category": "health",
+    "topic": "The first 24 hours of a hospitalisation matter most",
+    "brief": "Insurers ask for intimation within a short window, often 24-48 hours for an emergency admission. Save the helpline number and your policy number where you can find them fast. Angle: families lose money on paperwork technicalities, not on coverage."
+  },
+  {
+    "id": "health-sum-insured-too-low",
+    "category": "health",
+    "topic": "Is Rs 3-5 lakh still enough health cover?",
+    "brief": "A city ICU or a cardiac procedure can run well past a small sum insured, and medical costs rise faster than general inflation. Angle: do not assert a specific number. Make the point that the cover bought five years ago deserves a fresh look, and that a super top-up is a cheap way to raise it."
+  },
+  {
+    "id": "health-preventive-vs-curative",
+    "category": "health",
+    "topic": "Health insurance is for bills, not for staying healthy",
+    "brief": "Your policy pays hospital bills; it does not replace sleep, movement and regular check-ups. Angle: reframe insurance as the financial backstop, and prevention as the thing that keeps you out of the hospital. Warm, not preachy."
+  },
+  {
+    "id": "health-employer-cover-gap",
+    "category": "health",
+    "topic": "Your office cover leaves when you do",
+    "brief": "Employer group health cover is usually cheap and generous but ends on the last day of employment, and it may not cover parents well. A personal policy continues across job changes. Angle: use the office cover, do not depend on it as your only cover."
+  },
+  {
+    "id": "health-second-opinion",
+    "category": "health",
+    "topic": "Some plans include a second medical opinion",
+    "brief": "A few plans offer a second-opinion service from specialists before a major procedure, sometimes as part of the value-added benefits. Angle: useful when a surgery has been advised and the family wants reassurance."
+  },
+  {
+    "id": "term-human-life-value",
+    "category": "term",
+    "topic": "How much term cover does your family actually need?",
+    "brief": "One common method is human life value: annual income multiplied by the years left until retirement, plus outstanding loans, minus existing assets and cover. Angle: most people insure for a round number instead of doing this one simple sum."
+  },
+  {
+    "id": "term-cover-multiple",
+    "category": "term",
+    "topic": "The 10-15x income starting point for term cover",
+    "brief": "A common rule of thumb is 10-15 times annual income, plus home and personal loans, and more if you are the only earner. Angle: it is a starting point, not a formula. The real question is what your family's monthly expenses would look like without your income."
+  },
+  {
+    "id": "term-vs-endowment",
+    "category": "term",
+    "topic": "Why mixing insurance and investing usually fails at both",
+    "brief": "Term insurance gives a large cover for a small premium. Endowment or traditional plans charge much more for a small cover and bundle a modest return. Buying a cheap term plan and investing the difference separately is usually clearer. Angle: explain, do not sneer. Some people value the discipline of a bundled product."
+  },
+  {
+    "id": "term-premium-factors",
+    "category": "term",
+    "topic": "What decides your term insurance premium",
+    "brief": "Age, health and medical history, smoking or tobacco use, income proof, the cover amount and the policy term all move the premium. Angle: of these, age and smoking are the two you can still act on today."
+  },
+  {
+    "id": "term-buy-young",
+    "category": "term",
+    "topic": "The real cost of waiting to buy term insurance",
+    "brief": "Premium rises with age, and a diagnosis in the meantime can mean an exclusion, a loading, or a decline. Angle: do not quote a specific price. The point is that the cost of waiting is paid in two currencies: money, and insurability."
+  },
+  {
+    "id": "term-riders",
+    "category": "term",
+    "topic": "Riders: small add-ons with a specific job",
+    "brief": "Common term riders include accidental death benefit, critical illness, and waiver of premium. Each covers a narrow situation and adds to the premium. Angle: buy the rider for a risk you actually carry, not because it is offered at the last screen."
+  },
+  {
+    "id": "term-critical-illness-rider",
+    "category": "term",
+    "topic": "Critical illness cover is not hospitalisation cover",
+    "brief": "A critical illness benefit pays a lump sum when you are diagnosed with a listed condition, which helps with lost income and non-medical costs. Hospitalisation pays the treatment bills. They do different jobs. Angle: do not assume your health policy already does this."
+  },
+  {
+    "id": "term-waiver-of-premium",
+    "category": "term",
+    "topic": "What happens to your policy if you cannot pay?",
+    "brief": "A waiver-of-premium rider keeps the policy running if you are disabled or critically ill, subject to the policy's own definition of disability. Angle: the scenario nobody plans for is the one where income stops but premiums are still due."
+  },
+  {
+    "id": "term-accidental-death",
+    "category": "term",
+    "topic": "The accidental death benefit, and when it applies",
+    "brief": "This rider pays an extra sum if death is caused by an accident, as defined in the policy, and adds only a modest amount to the premium. Angle: it is narrow, but the situations it covers are exactly the ones a young family is least prepared for."
+  },
+  {
+    "id": "term-claim-settlement-ratio",
+    "category": "term",
+    "topic": "Do not pick a term plan on one number",
+    "brief": "Claim settlement ratios are published percentages, but they do not tell you whether your particular claim will be paid, and they can be read in different ways. Clear disclosure and correct paperwork matter more. Angle: a high ratio does not rescue a non-disclosure."
+  },
+  {
+    "id": "term-income-proof",
+    "category": "term",
+    "topic": "Why the insurer caps your cover at your income",
+    "brief": "Insurers limit the cover to a multiple of documented income to guard against misuse. Salaried buyers show salary slips and Form 16; self-employed buyers often need ITR and bank statements. Angle: self-employed readers are frequently caught out here, so plan the paperwork."
+  },
+  {
+    "id": "term-medical-tests",
+    "category": "term",
+    "topic": "The pre-policy medical check-up, and what it can change",
+    "brief": "Tests can lead to a clean acceptance, a higher premium (loading), an exclusion for a specific condition, or in some cases a decline. Angle: declaring conditions before the test is far better than having them discovered."
+  },
+  {
+    "id": "term-nominee",
+    "category": "term",
+    "topic": "The nominee line most people fill in carelessly",
+    "brief": "A nominee is the person who receives the claim. It should be updated after marriage, a child, or a separation, and naming a minor needs a guardian's details. Angle: the payout is the whole point of the policy, and this is the one field that decides who gets it smoothly."
+  },
+  {
+    "id": "term-section-80c",
+    "category": "term",
+    "topic": "The tax angle on term insurance premiums",
+    "brief": "Term premiums can qualify for deduction under Section 80C within the prescribed annual limit, and death benefits are generally tax-free for the nominee. Rules and limits change, so confirm with a tax advisor. Angle: do not let the tax benefit be the reason you buy. Buy the cover; note the tax as a side benefit."
+  },
+  {
+    "id": "term-not-an-investment",
+    "category": "term",
+    "topic": "You will probably never use your term policy",
+    "brief": "A term plan pays only on death during the term, so the healthy majority never claim it. That is not a flaw, it is the product: a small premium buys a large, immediate cover. Angle: reframe the 'wasted money' feeling that stops people from buying it."
+  },
+  {
+    "id": "term-limited-pay",
+    "category": "term",
+    "topic": "Limited-pay term plans: pay for 10 years, stay covered for 30",
+    "brief": "A limited-pay option concentrates the premium into fewer years while the cover continues, so the annual premium is higher but you are not paying in your 50s. Angle: useful when income is high now and you want the commitment to end early."
+  },
+  {
+    "id": "term-increasing-cover",
+    "category": "term",
+    "topic": "Your cover should grow when your life does",
+    "brief": "Some plans allow an increase in cover at milestones such as marriage, the birth of a child or a new home loan, sometimes without fresh medicals. Angle: cover bought at 28 rarely matches the liabilities you carry at 38."
+  },
+  {
+    "id": "term-cover-till-when",
+    "category": "term",
+    "topic": "How long should your term plan run?",
+    "brief": "A common approach is to cover yourself until your last major liability ends and your children are financially independent, often around retirement age. Longer terms cost more. Angle: align the end date with your retirement, not with the cheapest quote."
+  },
+  {
+    "id": "term-both-spouses",
+    "category": "term",
+    "topic": "If both of you earn, both of you need cover",
+    "brief": "Households with two incomes often insure only one earner, but the family budget depends on both. Cover each earning spouse for their own contribution, and consider replacing unpaid care work at home too. Angle: a two-income family with one policy is only half protected."
+  },
+  {
+    "id": "term-reinstatement",
+    "category": "term",
+    "topic": "What happens if a term premium bounces?",
+    "brief": "If a premium is missed the policy can lapse, and most insurers allow revival within a window by paying arrears, sometimes with fresh health declarations. Angle: a lapsed policy is not automatically gone, but the clock and the health questions come back."
+  },
+  {
+    "id": "term-trop",
+    "category": "term",
+    "topic": "Term with return of premium: is it worth it?",
+    "brief": "Return-of-premium term plans refund premiums if you outlive the term, but the premium is substantially higher than plain term. Angle: you are essentially paying the insurer more to keep your own money. Often, plain term plus a separate investment does better, but the reader should decide."
+  },
+  {
+    "id": "term-suicide-clause",
+    "category": "term",
+    "topic": "The clause in your term policy nobody reads",
+    "brief": "Most policies do not pay the full death benefit if death by suicide occurs within the first 12 months, though premiums are usually returned to the nominee. Angle: handle this with care and no drama. It is a factual clause about how a claim is treated, not a moral statement."
+  },
+  {
+    "id": "term-hide-smoking",
+    "category": "term",
+    "topic": "Declaring smoking costs a little now; hiding it costs everything later",
+    "brief": "Tobacco use raises premiums, and insurers may test for it. A claim can be contested if a material fact was not disclosed. Angle: the premium difference is small compared to a rejected claim for the family."
+  },
+  {
+    "id": "travel-schengen",
+    "category": "travel",
+    "topic": "Flying to Europe? The visa rule that decides your insurance",
+    "brief": "Schengen visa applications require travel medical insurance with a minimum medical cover of about 30,000 euros, valid across the Schengen area and covering repatriation. Angle: a practical, high-intent topic for anyone planning a Europe trip."
+  },
+  {
+    "id": "travel-medical-emergency",
+    "category": "travel",
+    "topic": "A hospital abroad can cost more than the whole trip",
+    "brief": "Travel medical insurance covers overseas hospitalisation, emergency treatment and often medical evacuation, which can be very expensive. Angle: keep the 24x7 assistance number and the policy copy offline on your phone before you fly."
+  },
+  {
+    "id": "travel-trip-cancellation",
+    "category": "travel",
+    "topic": "Trip cancellation cover only pays for listed reasons",
+    "brief": "Cancellation benefits reimburse non-refundable costs when the reason is covered, such as illness, a death in the family, or certain travel disruptions, and documents are required. Angle: a change of mind is not a covered reason, and this misunderstanding causes most travel claim disputes."
+  },
+  {
+    "id": "travel-baggage-loss",
+    "category": "travel",
+    "topic": "Lost baggage claims fail on paperwork",
+    "brief": "Baggage cover usually has sub-limits per bag and per item, and it requires an airline Property Irregularity Report plus receipts for expensive items. Angle: file the airline report at the airport before you leave, because that single piece of paper decides the claim."
+  },
+  {
+    "id": "travel-passport-loss",
+    "category": "travel",
+    "topic": "If you lose your passport in a foreign country",
+    "brief": "Some travel plans cover the cost of replacing a lost passport and emergency travel to get a new one, usually within a limit. Angle: it is a rarely used benefit that is worth a lot in the exact moment you need it."
+  },
+  {
+    "id": "travel-flight-delay",
+    "category": "travel",
+    "topic": "Flight delay compensation, and the ceiling on it",
+    "brief": "Delay benefits usually start after a specified number of hours and pay a fixed amount per day up to a cap, with the airline's own compensation counted separately. Angle: read the delay threshold before you buy; some policies start much later than others."
+  },
+  {
+    "id": "travel-adventure-sports",
+    "category": "travel",
+    "topic": "The trek was fun until it needed a helicopter",
+    "brief": "Adventure activities such as trekking at altitude, skiing, rafting and scuba are often excluded from standard travel insurance unless a specific add-on is bought. Angle: for readers planning a Himalayan trek or a diving holiday, this is the detail that decides whether a rescue is covered."
+  },
+  {
+    "id": "travel-student",
+    "category": "travel",
+    "topic": "Student travel insurance is not the same as a holiday plan",
+    "brief": "Student plans are built around university medical requirements, longer durations, and extras like study interruption or sponsor protection. Angle: for a child going abroad to study, a tourist policy is the wrong tool."
+  },
+  {
+    "id": "travel-senior-travellers",
+    "category": "travel",
+    "topic": "Travel cover for parents going abroad to visit family",
+    "brief": "Senior travellers often face higher premiums, age caps, and pre-existing conditions excluded unless bought as a specific add-on. Angle: for grandparents flying out for a new grandchild, buy the policy early and declare the conditions."
+  },
+  {
+    "id": "travel-single-vs-multi-trip",
+    "category": "travel",
+    "topic": "Frequent flyer? A single-trip policy may be the wrong buy",
+    "brief": "Annual multi-trip cover allows several journeys within a year, usually with a cap on the number of days per trip, and works out cheaper beyond roughly two or three trips. Angle: a simple arithmetic check that saves money."
+  },
+  {
+    "id": "travel-claim-documents",
+    "category": "travel",
+    "topic": "What a travel claim actually needs from you",
+    "brief": "Typically an airline report or police complaint, boarding passes, medical reports and diagnostic records, and original bills and receipts. Angle: photographs of every document before you leave the country are cheap insurance."
+  },
+  {
+    "id": "travel-pre-existing-abroad",
+    "category": "travel",
+    "topic": "Travelling with a pre-existing condition",
+    "brief": "Standard travel policies usually exclude pre-existing conditions from medical cover unless a specific add-on or a specialised senior plan includes them. Angle: a reader with diabetes or hypertension needs to check this line before booking the ticket."
+  },
+  {
+    "id": "travel-buy-before-you-fly",
+    "category": "travel",
+    "topic": "When to buy travel insurance relative to your booking",
+    "brief": "Buying early can extend cancellation protection over the period before departure, while buying at the last minute may still cover medical emergencies but not much else. Angle: the policy is cheap; the mistake is buying it after the first disruption."
+  },
+  {
+    "id": "claims-first-24-hours",
+    "category": "claims",
+    "topic": "What to do in the first hour of a medical emergency",
+    "brief": "Save the insurer helpline and your policy number on your phone, tell the hospital you have insurance and want cashless, and ask the hospital insurance desk to start pre-authorisation. Angle: a short, practical checklist. People are calmer when they have a list."
+  },
+  {
+    "id": "claims-cashless-preauthorisation",
+    "category": "claims",
+    "topic": "How cashless admission actually gets approved",
+    "brief": "You show your health card at the hospital insurance desk, the hospital sends a pre-authorisation request to the insurer or TPA, and approval usually comes with a sanctioned amount that can be revised later. Angle: mention that approval is not a claim settlement, and the final bill is still reviewed."
+  },
+  {
+    "id": "claims-planned-vs-emergency",
+    "category": "claims",
+    "topic": "Planned surgery means planning the paperwork too",
+    "brief": "For planned admissions, pre-authorisation is usually requested several days in advance, while emergency admissions need intimation within hours. Angle: giving readers this distinction before they need it prevents the most common cashless delay."
+  },
+  {
+    "id": "claims-document-checklist",
+    "category": "claims",
+    "topic": "The document checklist that decides your reimbursement",
+    "brief": "Commonly required: discharge summary, final hospital bill, payment receipts, prescriptions, investigation reports, doctor's advice, ID proof, and bank details. Originals are usually needed. Angle: give readers a list they can screenshot and keep."
+  },
+  {
+    "id": "claims-tpa-vs-insurer",
+    "category": "claims",
+    "topic": "Who is the TPA in your health policy?",
+    "brief": "A Third Party Administrator handles claims administration and the network hospital list for the insurer, but the risk and the final decision sit with the insurer. Angle: this matters when a claim is delayed, because escalation does not stop at the TPA."
+  },
+  {
+    "id": "claims-rejection-reasons",
+    "category": "claims",
+    "topic": "Why health claims actually get rejected",
+    "brief": "The most common reasons are non-disclosure of a pre-existing condition, a claim made before a waiting period was served, treatment listed as an exclusion, and incomplete or mismatched documents. Angle: almost all of these are avoidable at the buying stage, not the claiming stage."
+  },
+  {
+    "id": "claims-partial-settlement",
+    "category": "claims",
+    "topic": "Why the claim paid less than the bill",
+    "brief": "A part of the bill may be disallowed as non-payable, or reduced through proportionate deduction for a room category above the limit, or capped by a sub-limit. The insurer's claim settlement sheet shows the breakdown. Angle: ask for that sheet and read it line by line. It is explainable, not arbitrary."
+  },
+  {
+    "id": "claims-grievance-redressal",
+    "category": "claims",
+    "topic": "Your rights when a claim goes wrong",
+    "brief": "The path is usually the insurer's grievance redressal officer first, then IRDAI's grievance portal, and then the Insurance Ombudsman for eligible complaints, all free of cost. Angle: most people stop at an angry phone call. There is a proper, free escalation ladder."
+  },
+  {
+    "id": "claims-waiting-period-mistake",
+    "category": "claims",
+    "topic": "The most expensive mistake in health insurance",
+    "brief": "Buying a policy and claiming in the second month, before the initial waiting period ends, is one of the most common rejections. Angle: it is not the insurer being unfair; it is the contract being read too late."
+  },
+  {
+    "id": "claims-never-lapse",
+    "category": "claims",
+    "topic": "Never let your health policy lapse for a missed payment",
+    "brief": "A lapsed policy, especially one with waiting periods served over years, can mean restarting those clocks on a new policy, and it may need fresh underwriting. Angle: set a reminder, enable auto-pay, and treat the renewal date like an EMI date."
+  },
+  {
+    "id": "money-protection-first",
+    "category": "money",
+    "topic": "Protection comes before wealth building",
+    "brief": "A single hospitalisation or the loss of an earner can wipe out years of saving. Insurance is what keeps the plan intact when life interrupts it. Angle: frame insurance as the foundation of a financial plan, not a product to be argued about. Warm, not preachy."
+  },
+  {
+    "id": "money-healthcare-inflation",
+    "category": "money",
+    "topic": "Healthcare costs do not rise at the same pace as everything else",
+    "brief": "Medical inflation has generally run ahead of general inflation in India, so hospital bills grow faster than salaries do. Angle: do not quote a specific figure. Make the point that a cover fixed years ago is quietly shrinking in real terms."
+  },
+  {
+    "id": "money-review-milestones",
+    "category": "money",
+    "topic": "Four moments when your insurance needs a fresh look",
+    "brief": "Marriage, the birth of a child, a new home loan, and a job change all change both your liabilities and your existing group cover. Angle: insurance is not a one-time purchase, it is a setting you revisit as life changes."
+  },
+  {
+    "id": "money-insure-breadwinner-first",
+    "category": "money",
+    "topic": "Insure the income, not the sentiment",
+    "brief": "Families sometimes insure a child or a retired parent first because that feels protective, while leaving the earning member uncovered. Angle: the risk to the household budget is the loss of income. Start there, then extend cover outward."
+  },
+  {
+    "id": "money-insurance-vs-investment",
+    "category": "money",
+    "topic": "Insurance and investment are two different jobs",
+    "brief": "Insurance transfers a risk you cannot afford to carry; investments grow money over time. Asking one product to do both usually weakens both. Angle: explain the split simply. Insurance protects the plan; investing builds it."
+  },
+  {
+    "id": "money-cheap-premium-trap",
+    "category": "money",
+    "topic": "The cheapest premium is not the cheapest policy",
+    "brief": "A low premium often comes with co-pay, room-rent caps, sub-limits, or a long list of excluded conditions. Those only surface at claim time. Angle: compare the cover and the conditions, then look at the price. Same cover, then price."
+  },
+  {
+    "id": "money-buy-before-you-need",
+    "category": "money",
+    "topic": "You cannot buy insurance for the emergency you are in",
+    "brief": "Waiting periods, medical underwriting and exclusions mean a policy bought during an illness rarely helps with that illness. Angle: the honest, slightly awkward truth about timing that nobody tells buyers at the point of sale."
+  },
+  {
+    "id": "money-one-advisor",
+    "category": "money",
+    "topic": "Why one point of contact beats five policies",
+    "brief": "Policies scattered across portals and banks mean fragmented renewal reminders and nobody to call at claim time. A single advisor keeps the family's cover in view. Angle: careful and non-salesy. The point is service continuity, not commission."
+  },
+  {
+    "id": "money-annual-review",
+    "category": "money",
+    "topic": "One evening a year to check the family's cover",
+    "brief": "Review sums insured, renewals coming up, nominees, and whether a new loan or a new child changed the requirement. Angle: a simple ritual a couple can do together over chai. Practical and human."
+  },
+  {
+    "id": "money-insure-both-earners",
+    "category": "money",
+    "topic": "The unpaid work at home has a value too",
+    "brief": "If a non-earning spouse manages the home and children, replacing that work has a real cost, which is why some families insure both partners. Angle: a thoughtful reframe that goes beyond the salary question."
+  },
+  {
+    "id": "myth-cheapest-is-best",
+    "category": "myth",
+    "topic": "Myth: the cheapest plan is the best plan",
+    "brief": "A lower premium usually means something was trimmed: co-pay, sub-limits, room caps, or narrower coverage. Angle: you are buying protection, not a price. Bust the myth and point to what to compare instead."
+  },
+  {
+    "id": "myth-insurers-do-not-pay",
+    "category": "myth",
+    "topic": "Myth: insurance companies never pay claims",
+    "brief": "Insurers publish claim settlement data and most claims are paid. A large share of disputes trace back to non-disclosure, waiting periods and exclusions. Angle: bust the myth without defending insurers blindly. The lesson is disclosure and paperwork."
+  },
+  {
+    "id": "myth-office-cover-is-enough",
+    "category": "myth",
+    "topic": "Myth: my company already covers me, so I am done",
+    "brief": "Employer cover usually ends with the job, is often modest, and may not extend well to parents. A personal policy continues across job changes. Angle: use both. The office cover is a benefit, not a plan."
+  },
+  {
+    "id": "myth-young-people-do-not-need-it",
+    "category": "myth",
+    "topic": "Myth: I am young and healthy, insurance can wait",
+    "brief": "Premiums rise with age and a new diagnosis can bring an exclusion, a loading, or a decline. Angle: youth is the cheapest time to be underwritten. That is the whole argument, and it needs no scare tactics."
+  },
+  {
+    "id": "myth-term-is-wasted-money",
+    "category": "myth",
+    "topic": "Myth: term insurance is wasted money if nothing happens",
+    "brief": "You pay a small amount so your family never faces the version of events where you are not there. The policy not paying out is the good outcome. Angle: reframe the feeling warmly, without guilt-tripping the reader."
+  },
+  {
+    "id": "myth-child-plan-is-investment",
+    "category": "myth",
+    "topic": "Myth: a child plan is the best way to save for your child",
+    "brief": "Child plans bundle a small insurance cover with an investment component, and the returns usually deserve a side-by-side comparison with a term plan plus a separate investment. Angle: no blanket verdict. Encourage the comparison."
+  },
+  {
+    "id": "myth-claims-are-rejected-randomly",
+    "category": "myth",
+    "topic": "Myth: claims are rejected at random",
+    "brief": "Rejections follow the contract: disclosure, waiting periods and exclusions. Insurers have to state a reason. Angle: bust the myth and hand the reader the three things that actually control the outcome."
+  },
+  {
+    "id": "myth-buying-online-is-cheaper",
+    "category": "myth",
+    "topic": "Myth: buying insurance online is always cheaper",
+    "brief": "The price for the same product is generally the same, but the cover offered by cheap-looking plans can differ widely, and there is nobody to call at claim time. Angle: the real difference is guidance and service, not a discount. Do not push the reader either way."
+  }
+]

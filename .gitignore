@@ -1,0 +1,15 @@
+# Secrets — never commit these
+.env
+.env.local
+
+# Local state archives produced by "npm run reset"
+data/state.archive.json
+
+# Local noise
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
+
+# NOTE: data/state.json is intentionally NOT ignored.
+# The GitHub Action commits it back so topic history survives between runs.
