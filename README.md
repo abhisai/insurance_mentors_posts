@@ -365,8 +365,8 @@ npm run post
 ```
 
 It should refuse, saying the last post went out a moment ago and the minimum gap is
-120 minutes. Two limits do that work: a **daily cap** (`POSTS_PER_DAY`, default 2)
-and a **quiet period** (`MIN_GAP_MINUTES`, default 120). The cap allows the two
+30 minutes. Two limits do that work: a **daily cap** (`POSTS_PER_DAY`, default 2)
+and a **quiet period** (`MIN_GAP_MINUTES`, default 30). The cap allows the two
 scheduled slots; the gap stops a retry or a manual run from posting twice inside one.
 
 If you want to post again immediately anyway (different topic, fresh text):
@@ -435,7 +435,7 @@ gap are enforced in code rather than by the clock.
 Two things to keep in mind if you change the slots:
 
 - **Keep `MIN_GAP_MINUTES` well below the gap between slots** so the second one is not
-  blocked by the quiet period. The defaults (2 posts, 120 minutes) are sized for the
+  blocked by the quiet period. The defaults (2 posts, 30 minutes) are sized for the
   540 minutes between 08:00 and 17:00 IST.
 - **`POSTS_PER_DAY` is the real limit.** The cron only decides *when* the bot tries;
   the counter decides whether it may. Adding a third cron line without raising
@@ -527,7 +527,7 @@ Useful flags: `--dry-run` / `-n`, `--preview`, `--force` / `-f`, `--topic <id>`.
 ## 10. Safety rails already built in
 
 - **Never double-posts.** Two limits guard each day: `POSTS_PER_DAY` (default 2) caps
-  how many posts go out, and `MIN_GAP_MINUTES` (default 120) is a quiet period after
+  how many posts go out, and `MIN_GAP_MINUTES` (default 30) is a quiet period after
   the most recent one. A retried, delayed or manual run inside a slot is skipped
   unless you pass `--force`.
 - **Never repeats a topic.** 93 topics rotate and cycle by least-recently-used.
@@ -561,7 +561,7 @@ Useful flags: `--dry-run` / `-n`, `--preview`, `--force` / `-f`, `--topic <id>`.
 | `OpenAI API 429` (rate limit) | Too many requests in a short window. A daily job never hits this — retry. |
 | `Model ... refused to write` | The safety filter rejected the draft. Re-run; the topic rotates. |
 | Forbidden push in Actions, or *Write access to repository not granted* | The repository's default `GITHUB_TOKEN` permission is read-only. Set **Settings → Actions → General → Workflow permissions → Read and write permissions**. The workflow already requests `contents: write`; the repository setting is the ceiling above it. |
-| `preflight` warns *"No post would go out right now"* | Expected, not an error — it reports the guard accurately, e.g. the daily limit is reached or the last post was inside the 120-minute quiet period. Use `--force` to post anyway. |
+| `preflight` warns *"No post would go out right now"* | Expected, not an error — it reports the guard accurately, e.g. the daily limit is reached or the last post was inside the 30-minute quiet period. Use `--force` to post anyway. |
 | Workflow never runs on schedule | Scheduled workflows are disabled after 60 days of repo inactivity. Run it once manually to re-enable. |
 
 ---

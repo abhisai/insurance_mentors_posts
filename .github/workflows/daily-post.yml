@@ -54,7 +54,7 @@ jobs:
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || 'false' }}
           LINK_CHANCE: '0'
           POSTS_PER_DAY: '2'
-          MIN_GAP_MINUTES: '120'
+          MIN_GAP_MINUTES: '30'
           MAX_CHARS: '280'
           BRAND_NAME: InsuranceMentors.in
           BRAND_SITE: https://www.insurancementors.in

@@ -59,7 +59,7 @@ export const config = {
   // hard cap; minGapMinutes is the quiet period that keeps a retried or manually
   // triggered run from posting twice in the same slot.
   postsPerDay: Math.max(1, Math.round(asNumber(process.env.POSTS_PER_DAY, 2))),
-  minGapMinutes: Math.max(0, Math.round(asNumber(process.env.MIN_GAP_MINUTES, 120))),
+  minGapMinutes: Math.max(0, Math.round(asNumber(process.env.MIN_GAP_MINUTES, 30))),
 
   ai: {
     apiKey: process.env.OPENAI_API_KEY || '',
