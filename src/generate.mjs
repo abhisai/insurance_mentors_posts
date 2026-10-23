@@ -151,18 +151,29 @@ function payloadVariants(model, messages) {
   return [richest, { ...base, max_completion_tokens: config.ai.maxOutputTokens }, legacy, base];
 }
 
-async function callModel(messages, model) {
-  const variants = payloadVariants(model, messages);
-  let lastError;
+// A 5xx, or a plain 429 rate limit, is usually a blip rather than a reason to
+// fail the run. The job timeout is ten minutes, so a couple of short retries
+// cost nothing and turn an "OpenAI had a bad minute" into a published post.
+const TRANSIENT_STATUS = new Set([408, 409, 425, 429, 500, 502, 503, 504]);
+const MAX_ATTEMPTS = 3;
 
-  for (let index = 0; index < variants.length; index += 1) {
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+/**
+ * Sends one chat-completions request, retrying transient failures in place.
+ * A 429 caused by an empty balance is NOT transient, so it is returned at once.
+ */
+async function requestCompletion(body) {
+  let last;
+
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
     const response = await fetch(`${config.ai.baseUrl}/chat/completions`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${config.ai.apiKey}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(variants[index]),
+      body: JSON.stringify(body),
     });
 
     const raw = await response.text();
@@ -173,8 +184,38 @@ async function callModel(messages, model) {
       /* keep raw */
     }
 
+    const outOfCredits = !response.ok && isOutOfCredits(response.status, payload, raw);
+    last = { response, raw, payload, outOfCredits };
+
+    const transient = !response.ok && !outOfCredits && TRANSIENT_STATUS.has(response.status);
+    if (!transient || attempt === MAX_ATTEMPTS) return last;
+
+    // Honour Retry-After when the API sends one, capped so a long hint cannot
+    // eat the whole workflow timeout.
+    const retryAfter = Number(response.headers.get('retry-after'));
+    const delayMs =
+      Number.isFinite(retryAfter) && retryAfter > 0
+        ? Math.min(retryAfter * 1000, 10_000)
+        : Math.min(1000 * 2 ** (attempt - 1), 4000);
+
+    console.warn(
+      `OpenAI returned ${response.status} for "${body.model}". ` +
+        `Retrying in ${(delayMs / 1000).toFixed(1)}s (attempt ${attempt + 1} of ${MAX_ATTEMPTS}).`
+    );
+    await sleep(delayMs);
+  }
+
+  return last;
+}
+
+async function callModel(messages, model) {
+  const variants = payloadVariants(model, messages);
+  let lastError;
+
+  for (let index = 0; index < variants.length; index += 1) {
+    const { response, raw, payload, outOfCredits } = await requestCompletion(variants[index]);
+
     if (!response.ok) {
-      const outOfCredits = isOutOfCredits(response.status, payload, raw);
       const error = new Error(
         outOfCredits
           ? `OpenAI account has no credits left (code: credit_balance_exhausted). A ChatGPT subscription does NOT fund the API. Buy credits on the same organization that owns this key: https://platform.openai.com/settings/organization/billing/`
@@ -239,8 +280,16 @@ async function generateRaw(messages) {
     } catch (error) {
       lastError = error;
       // 404 = unknown model, 403 = no access to that model on this account.
-      // Both mean "try the next one", anything else is a real failure.
-      const retryable = error.status === 404 || error.status === 403 || error.status === 400;
+      // 5xx and plain 429s are worth handing to another model too: the failure
+      // may be model-side. An empty balance is not — other models would fail
+      // the same way, so that error goes straight to the user.
+      const retryable =
+        !error.outOfCredits &&
+        (error.status === 400 ||
+          error.status === 403 ||
+          error.status === 404 ||
+          error.status === 429 ||
+          (error.status >= 500 && error.status <= 599));
       if (!retryable) throw error;
       console.warn(`Model "${model}" unavailable (${error.status}). Trying next.`);
     }

@@ -31,7 +31,7 @@ Check the sum insured first. Compare premiums last.
 #HealthInsurance`;
 
 /** Controls how the mock AI behaves. Tests flip this between runs. */
-const ai = { mode: 'ok', calls: [] };
+const ai = { mode: 'ok', calls: [], failures: 0 };
 const x = { calls: [] };
 
 const listen = (server) =>
@@ -73,6 +73,18 @@ const aiServer = http.createServer(async (req, res) => {
   if (ai.mode === 'always-400') {
     send(res, 400, {
       error: { message: 'You do not have access to this model.', type: 'invalid_request_error' },
+    });
+    return;
+  }
+
+  // A transient OpenAI 5xx. The next attempt must succeed without a new run.
+  if (ai.mode === 'flaky-500' && ai.failures > 0) {
+    ai.failures -= 1;
+    send(res, 500, {
+      error: {
+        message: 'The server had an error while processing your request. Sorry about that!',
+        type: 'server_error',
+      },
     });
     return;
   }
@@ -398,6 +410,20 @@ try {
   check('retried exactly once', ai.calls.length === 2, `AI calls: ${ai.calls.length}`);
   check('retry dropped the temperature param', ai.calls[1]?.body?.temperature === undefined);
   check('retry kept the model and messages', ai.calls[1]?.body?.model === MODEL && ai.calls[1]?.body?.messages.length === 2);
+  ai.mode = 'ok';
+
+  // --- 6b. A transient 5xx must be retried, not fail the run --------------
+  ai.mode = 'flaky-500';
+  ai.failures = 1;
+  reset();
+  const flaky = await run(['--dry-run']);
+  check('a transient 500 is retried', flaky.status === 0, flaky.stderr.trim().split('\n').pop());
+  check(
+    'the retry used the same model',
+    ai.calls.length === 2 && ai.calls[1]?.body?.model === MODEL,
+    `AI calls: ${ai.calls.length}`
+  );
+  check('the retry is announced', flaky.stderr.includes('Retrying in'), flaky.stderr.trim().split('\n')[0]);
   ai.mode = 'ok';
 
   // --- 7. Real API errors must surface the OpenAI message and fail --------
