@@ -7,6 +7,7 @@ import path from 'node:path';
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { config } from '../src/config.mjs';
+import { todayKey } from '../src/state.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 // Never point the suite at the real data/state.json. Once an actual post exists
@@ -261,6 +262,12 @@ const reset = () => {
 const clearHistory = () => fs.writeFileSync(STATE, '{\n  "version": 1,\n  "posts": []\n}\n', 'utf8');
 
 try {
+  check(
+    'daily cap uses IST date across UTC midnight',
+    todayKey(new Date('2026-10-23T21:00:00Z')) === '2026-10-24',
+    `date: ${todayKey(new Date('2026-10-23T21:00:00Z'))}`
+  );
+
   // --- 1. Dry run must not touch X or the state file -----------------------
   reset();
   const dry = await run(['--dry-run']);
@@ -305,18 +312,18 @@ try {
   check('second run on the same day does not post', x.calls.length === before, `X calls: ${x.calls.length}`);
   check('second run explains the skip', again.stdout.includes('daily limit of 1'));
 
-  // --- 3b. Two posts a day: the daily limit and the minimum gap -----------
-  // Morning and evening slots. The cap allows the second post; the gap stops a
-  // retried run from posting twice in one slot.
+  // --- 3b. Three posts a day: the daily limit and the minimum gap ---------
+  // The cap allows one post per scheduled slot; the gap blocks quick retries.
   clearHistory();
   reset();
-  await run([], 'src/index.mjs', { POSTS_PER_DAY: '2', MIN_GAP_MINUTES: '0' });
-  await run([], 'src/index.mjs', { POSTS_PER_DAY: '2', MIN_GAP_MINUTES: '0' });
-  check('both slots of the day may post', x.calls.length === 2, `X calls: ${x.calls.length}`);
+  await run([], 'src/index.mjs', { POSTS_PER_DAY: '3', MIN_GAP_MINUTES: '0' });
+  await run([], 'src/index.mjs', { POSTS_PER_DAY: '3', MIN_GAP_MINUTES: '0' });
+  await run([], 'src/index.mjs', { POSTS_PER_DAY: '3', MIN_GAP_MINUTES: '0' });
+  check('all three slots of the day may post', x.calls.length === 3, `X calls: ${x.calls.length}`);
 
-  const overLimit = await run([], 'src/index.mjs', { POSTS_PER_DAY: '2', MIN_GAP_MINUTES: '0' });
-  check('a third post is refused', x.calls.length === 2, `X calls: ${x.calls.length}`);
-  check('it explains the daily limit', overLimit.stdout.includes('daily limit of 2'));
+  const overLimit = await run([], 'src/index.mjs', { POSTS_PER_DAY: '3', MIN_GAP_MINUTES: '0' });
+  check('a fourth post is refused', x.calls.length === 3, `X calls: ${x.calls.length}`);
+  check('it explains the daily limit', overLimit.stdout.includes('daily limit of 3'));
 
   clearHistory();
   reset();

@@ -55,10 +55,9 @@ export const config = {
   force: asBool(process.env.FORCE, false),
   maxChars: asNumber(process.env.MAX_CHARS, 280),
   linkChance: asNumber(process.env.LINK_CHANCE, 0),
-  // The workflow fires twice a day (08:00 and 17:00 IST). postsPerDay is the
-  // hard cap; minGapMinutes is the quiet period that keeps a retried or manually
-  // triggered run from posting twice in the same slot.
-  postsPerDay: Math.max(1, Math.round(asNumber(process.env.POSTS_PER_DAY, 2))),
+  // The workflow fires three times a day (08:00, 17:00, and 20:00 IST).
+  // postsPerDay is the hard cap; minGapMinutes stops retried/manual duplicates.
+  postsPerDay: Math.max(1, Math.round(asNumber(process.env.POSTS_PER_DAY, 3))),
   minGapMinutes: Math.max(0, Math.round(asNumber(process.env.MIN_GAP_MINUTES, 30))),
 
   ai: {

@@ -1,13 +1,7 @@
 name: Insurance posts to X
 
 on:
-  # Two slots, both UTC because GitHub cron has no other option:
-  #   02:30 UTC = 08:00 IST
-  #   11:30 UTC = 17:00 IST
-  # GitHub may start a scheduled run a few minutes late, which is harmless: the
-  # daily limit and the minimum gap are enforced in code, not by the clock.
-  schedule:
-    - cron: '30 2,11 * * *'
+  # cron-job.org calls workflow_dispatch at 08:00, 17:00, and 20:00 IST.
   workflow_dispatch:
     inputs:
       dry_run:
@@ -53,7 +47,7 @@ jobs:
           X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || 'false' }}
           LINK_CHANCE: '0'
-          POSTS_PER_DAY: '2'
+          POSTS_PER_DAY: '3'
           MIN_GAP_MINUTES: '30'
           MAX_CHARS: '280'
           BRAND_NAME: InsuranceMentors.in

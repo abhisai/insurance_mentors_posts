@@ -46,7 +46,7 @@ async function main() {
   const theme = themeForDate(date);
   const stats = topicStats(topics, state);
 
-  console.log(`Theme for today (UTC ${date.toISOString().slice(0, 10)}): ${theme.label}`);
+  console.log(`Theme for today (IST ${todayKey(date)}): ${theme.label}`);
   console.log(`Topic library: ${stats.total} topics, ${stats.used} used, ${stats.remaining} fresh.`);
 
   const gate = postGate(state, {

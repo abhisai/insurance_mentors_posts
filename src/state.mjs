@@ -29,7 +29,8 @@ export function saveState(state) {
   fs.writeFileSync(file, `${JSON.stringify(state, null, 2)}\n`, 'utf8');
 }
 
-export const todayKey = (date = new Date()) => date.toISOString().slice(0, 10);
+export const todayKey = (date = new Date()) =>
+  new Date(date.getTime() + 330 * 60_000).toISOString().slice(0, 10);
 
 export function livePostsToday(state, now = new Date()) {
   const today = todayKey(now);
@@ -40,7 +41,7 @@ export function livePostsToday(state, now = new Date()) {
  * Decides whether another post may go out right now.
  *
  * Two limits work together:
- *   postsPerDay    how many posts are allowed in one UTC day
+ *   postsPerDay    how many posts are allowed in one IST day
  *   minGapMinutes  the quiet period after the most recent post. This is what
  *                  stops a retried, delayed or manually triggered run from
  *                  posting twice inside the same slot.

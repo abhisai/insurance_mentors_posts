@@ -1,11 +1,11 @@
 # InsuranceMentors.in — daily X (Twitter) automation
 
 Writes insurance posts with the OpenAI (ChatGPT) API and publishes them straight to
-X — two a day, at 08:00 and 17:00 IST. Runs in GitHub Actions, so it works even when
+X — three a day, at 08:00, 17:00, and 20:00 IST. Runs in GitHub Actions, so it works even when
 your laptop is off. No API keys live in the code, and there are no npm dependencies.
 
 ```
-GitHub Actions (08:00 and 17:00 IST)
+GitHub Actions (08:00, 17:00, and 20:00 IST)
         |
         v
 data/topics.json  -->  pick today's topic (rotates by weekday theme)
@@ -57,7 +57,7 @@ where almost everyone loses a day.
 | --- | --- | --- |
 | OpenAI API key | [platform.openai.com/api-keys](https://platform.openai.com/api-keys) | Looks like `sk-proj-...`. **Writes** the post. Required. |
 | X API keys | [developer.x.com](https://developer.x.com) → your App → Keys and tokens | 4 values, see step 3. **Publishes** the post. The App must sit inside a Project on the **Pay Per Use** plan — X has no free tier any more. |
-| A little X credit | [console.x.com](https://console.x.com) → Billing / Credits | ~$0.90/month at two posts a day with no links. New accounts get free credits. |
+| A little X credit | [console.x.com](https://console.x.com) → Billing / Credits | ~$1.35/month at three posts a day with no links. New accounts get free credits. |
 | A GitHub repo | github.com | Free account is fine |
 
 > **You do not need the X keys to start.** OpenAI writes the text; X delivers it to
@@ -144,20 +144,20 @@ At the 280-character limit each post is a single request, so the maths is simple
 
 | Link rate | Posts a month | Cost a month |
 | --- | --- | --- |
-| **0% (the default)** | 60 | **~$0.90** |
-| 25% | 60 | ~$3.70 |
+| **0% (the default)** | 90 | **~$1.35** |
+| 25% | 90 | ~$5.51 |
 
-This project posts **no links at all** (`LINK_CHANCE=0`), so at two posts a day the
-bill is about **`$0.90` a month** — and your free credits cover far more than a year
+This project posts **no links at all** (`LINK_CHANCE=0`), so at three posts a day the
+bill is about **`$1.35` a month** — and your free credits cover far more than a year
 of that. The mechanism is still there if you ever want it, but note what the second
-row shows: at a 25% link rate those 15 link posts cost `$3.00` on their own, while
-the other 45 together cost `$0.68`. Links are also suppressed in reach by X, so a
+row shows: at a 25% link rate those 22.5 link posts cost `$4.50` on their own, while
+the other 67.5 together cost about `$1.01`. Links are also suppressed in reach by X, so a
 plain post is both cheaper and seen by more people. Your site and WhatsApp number
 belong in your X bio instead.
 
 New pay-per-use accounts earn **free credits**: X advertises up to `$70` — `$20`
 for saving a first payment card plus a match of your first auto-recharge, up to
-`$50`. At two posts a day, that is still many months of posting for nothing.
+`$50`. At three posts a day, that is still many months of posting for nothing.
 
 #### Set up the Project and plan
 
@@ -365,8 +365,8 @@ npm run post
 ```
 
 It should refuse, saying the last post went out a moment ago and the minimum gap is
-30 minutes. Two limits do that work: a **daily cap** (`POSTS_PER_DAY`, default 2)
-and a **quiet period** (`MIN_GAP_MINUTES`, default 30). The cap allows the two
+30 minutes. Two limits do that work: a **daily cap** (`POSTS_PER_DAY`, default 3)
+and a **quiet period** (`MIN_GAP_MINUTES`, default 30). The cap allows the three
 scheduled slots; the gap stops a retry or a manual run from posting twice inside one.
 
 If you want to post again immediately anyway (different topic, fresh text):
@@ -414,36 +414,40 @@ After that, the cron takes over and you do not need to touch it again.
 
 ## 7. The daily schedule
 
-Two slots, both in UTC because GitHub cron has no other option:
+The workflow is triggered by cron-job.org rather than GitHub's built-in scheduler.
+Configure a daily job for **08:00, 17:00, and 20:00 Asia/Kolkata**. This external
+trigger is also best-effort; it does not guarantee an exact start time.
 
-| Cron | UTC | IST |
-| --- | --- | --- |
-| `30 2 * * *` | 02:30 | **08:00** |
-| `30 11 * * *` | 11:30 | **17:00** |
+1. In GitHub, create a fine-grained personal access token for this repository only.
+   Grant **Actions: Read and write** and copy the token once.
+2. In cron-job.org, create a daily job in the `Asia/Kolkata` time zone. Use:
 
-They are written as one line in `.github/workflows/daily-post.yml`:
+   - **URL:** `https://api.github.com/repos/abhisai/insurance_mentors_posts/actions/workflows/daily-post.yml/dispatches`
+   - **Method:** `POST`
+   - **Request body type:** JSON
+   - **Body:** `{"ref":"main","inputs":{"dry_run":false,"topic":""}}`
+   - **Headers:**
 
-```yaml
-schedule:
-  - cron: '30 2,11 * * *'
-```
+     ```text
+     Accept: application/vnd.github+json
+     Authorization: Bearer <your fine-grained GitHub token>
+     X-GitHub-Api-Version: 2022-11-28
+     Content-Type: application/json
+     ```
 
-Edit that line to move them. GitHub's scheduler is UTC-only and can start a few
-minutes late under load — which is harmless, because the daily cap and the minimum
-gap are enforced in code rather than by the clock.
+3. Set the schedule to run at **08:00, 17:00, and 20:00** every day in
+   `Asia/Kolkata`. If the scheduler requires separate jobs, create three with the
+   same URL, body, and headers.
+4. Save the job and test it once. A successful GitHub dispatch normally returns
+   HTTP `204`; then check the repository's Actions page for the run. Do not share
+   the token in chat or put it in the request URL.
 
-Two things to keep in mind if you change the slots:
-
-- **Keep `MIN_GAP_MINUTES` well below the gap between slots** so the second one is not
-  blocked by the quiet period. The defaults (2 posts, 30 minutes) are sized for the
-  540 minutes between 08:00 and 17:00 IST.
-- **`POSTS_PER_DAY` is the real limit.** The cron only decides *when* the bot tries;
-  the counter decides whether it may. Adding a third cron line without raising
-  `POSTS_PER_DAY` produces a run that does nothing.
+The workflow still supports manual runs in GitHub Actions. Its manual `dry_run`
+input defaults to `true`, while the API body above explicitly sets it to `false`
+so the scheduled call publishes. Keep the local daily cap at three: `POSTS_PER_DAY`
+and the state guard use IST calendar days. The quiet period is 30 minutes.
 
 After each successful post the workflow commits the updated `data/state.json`.
-That also keeps the repository active, which matters because GitHub disables
-scheduled workflows on repos with no activity for 60 days.
 
 ---
 
@@ -461,8 +465,8 @@ scheduled workflows on repos with no activity for 60 days.
 | Change the link a link post would carry | `BRAND_SITE` / `BRAND_WHATSAPP` — only used when `LINK_CHANCE` is above `0` |
 | Run the tests against another history file | `STATE_FILE` (defaults to `data/state.json`) |
 | Post more or fewer times a day | `POSTS_PER_DAY` in the workflow env |
-| Give two slots more/less breathing room | `MIN_GAP_MINUTES` in the workflow env |
-| Change the posting times | the `cron:` line in the workflow (see step 7) |
+| Give scheduled slots more/less breathing room | `MIN_GAP_MINUTES` in the workflow env |
+| Change the posting times | the schedule in cron-job.org (see step 7) |
 
 To add a topic:
 
@@ -526,7 +530,7 @@ Useful flags: `--dry-run` / `-n`, `--preview`, `--force` / `-f`, `--topic <id>`.
 
 ## 10. Safety rails already built in
 
-- **Never double-posts.** Two limits guard each day: `POSTS_PER_DAY` (default 2) caps
+- **Never double-posts.** Two limits guard each day: `POSTS_PER_DAY` (default 3) caps
   how many posts go out, and `MIN_GAP_MINUTES` (default 30) is a quiet period after
   the most recent one. A retried, delayed or manual run inside a slot is skipped
   unless you pass `--force`.
